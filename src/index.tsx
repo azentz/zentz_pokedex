@@ -4,6 +4,9 @@ import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// import translations
+import './i18n/config';
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );

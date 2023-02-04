@@ -1,14 +1,18 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+
 import logo from './logo.svg';
 import styles from './App.module.scss';
 
 function App() {
+  const { t } = useTranslation();
+
   return (
     <div className={styles.container}>
       <header className={styles.header}>
         <img src={logo} className={styles.logo} alt="logo" />
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          Edit <code>src/App.tsx</code> and save to reload. {t('pokedex')}
         </p>
         <a
           className={styles.link}
