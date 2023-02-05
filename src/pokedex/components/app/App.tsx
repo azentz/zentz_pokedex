@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import Layout from '../layout/Layout';
+import Home from '../home/Home';
 import { Counter } from '../counter/Counter';
 import { store } from '../../store';
 
@@ -37,8 +38,9 @@ const App: React.FC = () => {
     <Provider store={store}>
       <Routes>
         <Route element={<Layout />}>
-          <Route path="/" element={Demo} />
+          <Route path="/" element={<Home />} />
           <Route path="/about" element={<div>About</div>} />
+          <Route path="/demo" element={Demo} />
         </Route>
       </Routes>
     </Provider>
