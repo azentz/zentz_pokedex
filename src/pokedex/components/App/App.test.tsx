@@ -8,13 +8,13 @@ jest.mock('react-i18next', () => ({
   useTranslation: () => ({ t: (key: any) => key }),
 }));
 
-const renderWithRouter = (ui: JSX.Element, {route = '/'} = {}) => {
+const renderWithRouter = (ui: JSX.Element, { route = '/' } = {}) => {
   window.history.pushState({}, 'Test page', route);
   return render(ui, {wrapper: BrowserRouter});
 }
 
 test('renders learn react link', () => {
-  renderWithRouter(<App />);
+  renderWithRouter(<App />, { route: '/demo' });
   const linkElement = screen.getByText(/learn react/i);
   expect(linkElement).toBeInTheDocument();
 });

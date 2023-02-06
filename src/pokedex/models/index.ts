@@ -1,0 +1,11 @@
+export * from './common.model';
+// export * from './ability';
+// export * from './characteristics';
+// export * from './egg-group';
+// export * from './gender';
+// export * from './growth-rates';
+// export * from './nature';
+// export * from './pokeathlon-stat';
+// export * from './stats';
+// export * from './type';
+export * from './pokemon.model';

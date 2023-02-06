@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Pokédex
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -44,3 +44,55 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+
+## Design
+
+### API
+
+[Pokemon API](https://pokeapi.co/docs/v2)
+
+## Considerations
+
+### Use GraphQL
+
+GraphQL endpoint is still in beta. Consider it for future iterations.
+
+[PokeAPI GraphiQL interface](https://beta.pokeapi.co/graphql/console/)
+
+[PokeAPI GraphQL Endpoint](https://beta.pokeapi.co/graphql/v1beta)
+
+#### Example Query
+
+```
+query samplePokeAPIquery {
+  pokemon_v2_pokemon {
+    id
+    name
+    order
+    is_default
+    pokemon_v2_pokemonsprites {
+      sprites
+    }
+    pokemon_v2_pokemonabilities {
+      pokemon_v2_ability {
+        name
+      }
+    }
+    pokemon_v2_pokemonmoves {
+      pokemon_v2_move {
+        name
+      }
+    }
+    pokemon_v2_pokemonspecy {
+      name
+    }
+    pokemon_v2_pokemontypes {
+      pokemon_v2_type {
+        name
+      }
+    }
+  }
+}
+
+```

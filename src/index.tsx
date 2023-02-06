@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router } from 'react-router-dom'
 
 import './i18n/config';
-import App from './pokedex/components/app/App';
+import App from './pokedex/components/App/App';
 import reportWebVitals from './reportWebVitals';
 
 import './index.scss';

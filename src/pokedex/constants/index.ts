@@ -1,0 +1,2 @@
+
+export const POKEMON_RESOURCE_LIST_LIMIT = 500;

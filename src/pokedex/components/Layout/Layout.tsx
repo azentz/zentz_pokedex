@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { Outlet } from 'react-router-dom';
 
-import Header from '../header/Header';
+import Header from '../Header/Header';
 
 const Layout: React.FC = () => {
   return (
