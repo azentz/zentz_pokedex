@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery, FetchBaseQueryError } from '@reduxjs/toolkit/query/react';
 
 import sessionStorageService from './session-storage.service';
-import { POKEMON_RESOURCE_LIST_LIMIT } from '../constants';
 import { NamedAPIResourceList, apiToPokemon, apiToNamedAPIResourceList, Pokemon } from '../models';
+import { POKEMON_RESOURCE_LIST_LIMIT } from '../constants';
 
 // Define a service using a base URL and expected endpoints
 export const pokemonService = createApi({
@@ -63,9 +63,5 @@ export const pokemonService = createApi({
         return { data: resultData };
       },
     }),
-
-    // getPokemonByName: builder.query<Pokemon, string>({
-    //   query: (name) => `pokemon/${name}`,
-    // }),
   }),
 });

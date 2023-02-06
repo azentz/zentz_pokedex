@@ -16,7 +16,6 @@ const Header: React.FC = () => {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link eventKey="1" as={Link} to="/" active={pathname === '/'}>{t('home')}</Nav.Link>
-              <Nav.Link eventKey="2" as={Link} to="/about" active={pathname === '/about'}>{t('about')}</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
