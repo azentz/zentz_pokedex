@@ -43,8 +43,8 @@ export const pokemonService = createApi({
       },
     }),
 
-    getPokemonById: builder.query<Pokemon, number>({
-      async queryFn(arg: number, _queryApi: any, _extraOptions: any, fetchWithBQ: any) {
+    getPokemonByName: builder.query<Pokemon, string>({
+      async queryFn(arg: string, _queryApi: any, _extraOptions: any, fetchWithBQ: any) {
         let resultData: Pokemon = {} as Pokemon;
 
         const url = `pokemon/${arg}`;
@@ -64,8 +64,8 @@ export const pokemonService = createApi({
       },
     }),
 
-    getPokemonByName: builder.query<Pokemon, string>({
-      query: (name) => `pokemon/${name}`,
-    }),
+    // getPokemonByName: builder.query<Pokemon, string>({
+    //   query: (name) => `pokemon/${name}`,
+    // }),
   }),
 });

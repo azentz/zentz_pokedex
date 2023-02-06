@@ -1,6 +1,6 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import counterReducer from './components/counter/counterSlice';
-import pokemonsReducer from './components/home/pokemonSlice';
+import pokemonsReducer from './components/Home/pokemonSlice';
 
 import { setupListeners } from '@reduxjs/toolkit/query/react';
 import { pokemonService } from './services/pokemon.service';

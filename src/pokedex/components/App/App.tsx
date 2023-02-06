@@ -3,8 +3,8 @@ import { Provider } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import Layout from '../layout/Layout';
-import Home from '../home/Home';
+import Layout from '../Layout/Layout';
+import Home from '../Home/Home';
 import { Counter } from '../counter/Counter';
 import { store } from '../../store';
 
