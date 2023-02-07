@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Alert from 'react-bootstrap/Alert';
 import Card from 'react-bootstrap/Card';
 import Placeholder from 'react-bootstrap/Placeholder';
@@ -18,6 +18,11 @@ const PokemonDetail: React.FC = () => {
   const { t } = useTranslation();
   const { pokemonName } = useParams<PokemonDetailParams>();
   const { data, error, isLoading } =  pokemonService.useGetPokemonByNameQuery(pokemonName || '');
+
+  // TODO: See if React Router DOM has better way to set page title when setting search params
+  useEffect(() => {
+    document.title = `${t('title_pokemon')} - ${pokemonName}`;
+  }, [t, pokemonName]);
 
   if (isLoading) {
     return (

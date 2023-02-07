@@ -1,21 +1,21 @@
-import React, { useEffect, useState, SyntheticEvent } from 'react';
+import React, { useEffect, useState } from 'react';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
-import Spinner from 'react-bootstrap/Spinner';
 import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import PokemonCard from '../PokemonCard/PokemonCard';
+import SearchBar from '../SearchBar/SearchBar';
 import { POKEMON_RESULTS_PER_PAGE } from '../../constants';
 import { pokemonService } from '../../services/pokemon.service';
 
 const Home: React.FC = () => {
   const { t } = useTranslation();
   const [page, setPage] = useState<number>(1);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const searchText = searchParams.get('search') ?? '';
   const { data, error, isLoading } = pokemonService.useListAllPokemonQuery();
 
@@ -23,34 +23,13 @@ const Home: React.FC = () => {
     setPage(page + 1);
   };
 
-  const handleSearchSubmit = (event: SyntheticEvent) => {
-    event.preventDefault();
-
-    const target = event.target as typeof event.target & {
-      search: { value: string };
-    };
-
-    if (target.search.value !== '') {
-      searchParams.set('search', target.search.value);
-    } else {
-      searchParams.delete('search');
-    }
-    setSearchParams(`?${searchParams.toString()}`);
-  };
-
   // TODO: See if React Router DOM has better way to set page title when setting search params
   useEffect(() => {
-    document.title = (searchText) ? `${searchText} - ${t('pokedex_search')}` : t('pokedex_search');
+    document.title = (searchText) ? `${t('title_pokedex_search')} - ${searchText}` : t('title_pokedex_search');
   }, [searchText, t]);
 
   if (isLoading) {
-    return (
-      <div className="text-center">
-        <Spinner animation="border" role="status">
-          <span className="visually-hidden">{t('loading')}</span>
-        </Spinner>
-      </div>
-    );
+    return (<LoadingSpinner />);
   }
 
   if (error || !data) {
@@ -77,18 +56,7 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <Form onSubmit={handleSearchSubmit}>
-        <Row>
-          <Col xs="auto" sm={8} md={6}>
-            <Form.Control placeholder={t('search_by_name_or_number') as string} name="search" defaultValue={searchText} />
-          </Col>
-          <Col xs="auto">
-            <Button variant="primary" type="submit">
-              {t('search')}
-            </Button>
-          </Col>
-        </Row>
-      </Form>
+      <SearchBar />
 
       {filteredResults.length === 0 && (
         <Alert variant="secondary" className="mt-2">
@@ -105,6 +73,7 @@ const Home: React.FC = () => {
           );
         })}
       </Row>
+
       {(page * POKEMON_RESULTS_PER_PAGE < filteredResults.length) && (
         <Row className="g-2 mt-0">
           <Col className="text-center">

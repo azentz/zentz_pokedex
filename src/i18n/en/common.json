@@ -7,8 +7,9 @@
   "loading": "Loading...",
   "no_results": "No results",
   "not_found": "Not found",
-  "pokedex_search": "Pokédex Search",
   "pokedex": "Pokédex",
   "search_by_name_or_number": "Search by Name or Number",
-  "search": "Search"
+  "search": "Search",
+  "title_pokedex_search": "Pokédex Search",
+  "title_pokemon": "Pokémon Details"
 }
