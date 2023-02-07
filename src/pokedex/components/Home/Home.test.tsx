@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux';
 import { render, screen } from '@testing-library/react';
-import { rest } from 'msw';
 
 import Home from './Home';
 import { store } from '../../store';
