@@ -1,61 +1,41 @@
-import React, { useCallback, useEffect, useState, useMemo, SyntheticEvent } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import { pokemonService } from '../../services/pokemon.service';
-import PokemonCard from '../PokemonCard/PokemonCard';
-
-import Spinner from 'react-bootstrap/Spinner';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
+import React, { useEffect, useState } from 'react';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import { useSearchParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
-const RESULTS_PER_PAGE = 21;
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
+import PokemonCard from '../PokemonCard/PokemonCard';
+import SearchBar from '../SearchBar/SearchBar';
+import { POKEMON_RESULTS_PER_PAGE } from '../../constants';
+import { pokemonService } from '../../services/pokemon.service';
 
 const Home: React.FC = () => {
+  const { t } = useTranslation();
   const [page, setPage] = useState<number>(1);
-  const { data, error, isLoading } = pokemonService.useListAllPokemonQuery();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const searchText = searchParams.get('search') ?? '';
+  const { data, error, isLoading } = pokemonService.useListAllPokemonQuery();
 
   const handleLoadMore = () => {
     setPage(page + 1);
   };
 
-  const handleSearchSubmit = (event: SyntheticEvent) => {
-    event.preventDefault();
-
-    const target = event.target as typeof event.target & {
-      search: { value: string };
-    };
-
-    if (target.search.value !== '') {
-      searchParams.set('search', target.search.value);
-    } else {
-      searchParams.delete('search');
-    }
-    // window.history.replaceState(null, target.search.value, '?');
-    setSearchParams(`?${searchParams.toString()}`);
-  };
-
+  // TODO: See if React Router DOM has better way to set page title when setting search params
   useEffect(() => {
-    document.title = (searchText) ? `${searchText} - Pokédex Search` : 'Pokédex Search';
-  }, [searchText]);
+    document.title = (searchText) ? `${t('title_pokedex_search')} - ${searchText}` : t('title_pokedex_search');
+  }, [searchText, t]);
 
   if (isLoading) {
-    return (
-      <div className="text-center">
-        <Spinner animation="border" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </Spinner>
-      </div>
-    );
+    return (<LoadingSpinner />);
   }
 
   if (error || !data) {
     return (
       <Alert variant="danger">
-        Sorry, there was an error while loading this page. Please try again.
+        {t('loading_error')}
       </Alert>
     );
   }
@@ -72,26 +52,15 @@ const Home: React.FC = () => {
     return false
   });
 
-  const pagedResults = filteredResults.slice(0, page * RESULTS_PER_PAGE);
+  const pagedResults = filteredResults.slice(0, page * POKEMON_RESULTS_PER_PAGE);
 
   return (
     <>
-      <Form onSubmit={handleSearchSubmit}>
-        <Row>
-          <Col xs="auto" sm={8} md={6}>
-            <Form.Control placeholder="Search by Name on Number" name="search" defaultValue={searchText} />
-          </Col>
-          <Col xs="auto">
-            <Button variant="primary" type="submit">
-              Search
-            </Button>
-          </Col>
-        </Row>
-      </Form>
+      <SearchBar />
 
       {filteredResults.length === 0 && (
         <Alert variant="secondary" className="mt-2">
-          No results.
+          {t('no_results')}
         </Alert>
       )}
 
@@ -104,11 +73,12 @@ const Home: React.FC = () => {
           );
         })}
       </Row>
-      {(page * RESULTS_PER_PAGE < filteredResults.length) && (
+
+      {(page * POKEMON_RESULTS_PER_PAGE < filteredResults.length) && (
         <Row className="g-2 mt-0">
           <Col className="text-center">
             <Button type="button" onClick={() => handleLoadMore()}>
-              Load More
+              {t('load_more')}
             </Button>        
           </Col>
         </Row>

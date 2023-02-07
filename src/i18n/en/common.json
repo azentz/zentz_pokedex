@@ -1,5 +1,15 @@
 {
-  "pokedex": "Pokédex",
+  "about": "About",
   "home": "Home",
-  "about": "About"
+  "load_more": "Load More",
+  "loading_error": "Sorry, there was an error while loading this page. Please try again.",
+  "loading_pokemon_error": "Error while loading Pokémon",
+  "loading": "Loading...",
+  "no_results": "No results",
+  "not_found": "Not found",
+  "pokedex": "Pokédex",
+  "search_by_name_or_number": "Search by Name or Number",
+  "search": "Search",
+  "title_pokedex_search": "Pokédex Search",
+  "title_pokemon": "Pokémon Details"
 }

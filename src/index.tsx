@@ -3,17 +3,17 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router } from 'react-router-dom'
 
 import './i18n/config';
+import './index.scss'; // NOTE: this contains bootstrap css, so import before other app css
+
 import App from './pokedex/components/App/App';
 import reportWebVitals from './reportWebVitals';
-
-import './index.scss';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <Router>
+    <Router basename={process.env.REACT_APP_ROUTER_BASENAME}>
       <App />
     </Router>
   </React.StrictMode>
