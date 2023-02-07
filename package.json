@@ -1,6 +1,7 @@
 {
   "name": "zentz-pokedex",
   "version": "0.1.0",
+  "homepage": "https://azentz.github.io/zentz_pokedex",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.2",
@@ -12,6 +13,7 @@
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "bootstrap": "^5.2.3",
+    "gh-pages": "^5.0.0",
     "i18next": "^22.4.9",
     "pokenode-ts": "^1.17.0",
     "react": "^18.2.0",
@@ -30,7 +32,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint:scss": "stylelint src/**/*.scss"
+    "lint:scss": "stylelint src/**/*.scss",
+    "predeploy": "npm run build",
+    "deploy": "REACT_APP_ROUTER_BASENAME='/zentz_pokedex' gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
