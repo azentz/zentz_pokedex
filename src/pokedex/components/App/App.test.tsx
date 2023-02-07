@@ -23,12 +23,12 @@ const renderWithRouter = (ui: JSX.Element, { route = '/' } = {}) => {
 
 test('renders Home page', () => {
   renderWithRouter(<App />, { route: '/' });
-  const linkElement = screen.getByText(/MockHome/i);
-  expect(linkElement).toBeInTheDocument();
+  const el = screen.getByText(/MockHome/i);
+  expect(el).toBeInTheDocument();
 });
 
 test('renders PokemonDetail page', () => {
   renderWithRouter(<App />, { route: '/pokemon/name' });
-  const linkElement = screen.getByText(/MockPokemonDetail/i);
-  expect(linkElement).toBeInTheDocument();
+  const el = screen.getByText(/MockPokemonDetail/i);
+  expect(el).toBeInTheDocument();
 });
